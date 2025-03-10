@@ -34,6 +34,7 @@ local taskBoss = {
 }
 
 local bossKillCount = Storage.Quest.U8_5.KillingInTheNameOf.BossKillCount.SnapperCount
+local pendingBossKillStorage = Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKill
 
 local deathEvent = CreatureEvent("KillingInTheNameOfBossDeath")
 function deathEvent.onDeath(creature, _corpse, _lastHitKiller, mostDamageKiller)

@@ -965,7 +965,7 @@ function Player.getTasks(self)
 				end
 			end
 
-			if self:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKill) > 0 then
+			if self:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKills) > 0 then
 				able[k] = false
 			end
 
@@ -1005,7 +1005,7 @@ function Player.canStartTask(self, name, table)
 	if self:getStorageValue(REPEATSTORAGE_BASE + id) >= repeatTimes or v.norepeatable and self:getStorageValue(REPEATSTORAGE_BASE + id) > 0 then
 		return false
 	end
-	if self:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKill) > 0 then
+	if self:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKills) > 0 then
 		return false
 	end
 	if v.level and self:getLevel() >= v.level[1] and self:getLevel() <= v.level[2] then
@@ -1041,7 +1041,7 @@ function Player.getStartedTasks(self)
 			tmp[#tmp + 1] = k
 		end
 	end
-	if self:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKill) > 0 then
+	if self:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKills) > 0 then
 		tmp.pendingBossKill = true
 	end
 	return tmp
