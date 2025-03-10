@@ -56,8 +56,8 @@ function deathEvent.onDeath(creature, _corpse, _lastHitKiller, mostDamageKiller)
 				end
 			end
 		end)
+	end
 	return true
-end
 end
 
 deathEvent:register()
