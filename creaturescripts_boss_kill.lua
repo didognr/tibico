@@ -54,7 +54,8 @@ function deathEvent.onDeath(creature, _corpse, _lastHitKiller, mostDamageKiller)
 					player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.Points, currentPoints + 1) -- Award points after boss kill
 					end
 				end
-				return true
+			end
+			return true
 			end
 		end
 	end)
