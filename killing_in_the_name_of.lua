@@ -965,7 +965,7 @@ function Player.getTasks(self)
 				end
 			end
 
-			if self:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKills) > 0 then
+			if self:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKills) > 0 or self:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.TaskLock) > 0 then
 				able[k] = false
 			end
 

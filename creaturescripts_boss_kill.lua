@@ -1,6 +1,6 @@
 local taskBoss = {
 	[1] = "the snapper",
-	[2] = "grandpa troll",
+	[3] = "grandpa troll",
 	[3] = "hide",
 	[4] = "boneless skeleton",
 	[5] = "minotaur berserker",
@@ -53,7 +53,6 @@ function deathEvent.onDeath(creature, _corpse, _lastHitKiller, mostDamageKiller)
 					end
 					player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.Points, currentPoints + 1) -- Award points after boss kill
 					end
-					player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.Points, currentPoints + 1) -- Award points after boss kill
 				end
 				return true
 			end
