@@ -24,5 +24,10 @@ local function greetCallback(npc, creature)
 	if player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.QuestLogEntry) ~= 0 then
 		player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.QuestLogEntry, 0) -- Ensure quest log is not marked prematurely
 	end
+
+	if player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.TaskLock) > 0 then
+		npcHandler:setMessage(MESSAGE_GREET, npcHandler:getMessage(MESSAGE_GREET) .. " You must defeat the boss associated with your current task before proceeding.")
+		return true -- Prevent further interaction if task lock exists
+	end
 	return true
 end

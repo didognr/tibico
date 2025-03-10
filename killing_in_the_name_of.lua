@@ -1006,6 +1006,7 @@ function Player.canStartTask(self, name, table)
 		return false
 	end
 	if self:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKills) > 0 then
+		self:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have pending boss kills. Complete them before starting a new task.")
 		return false
 	end
 	if v.level and self:getLevel() >= v.level[1] and self:getLevel() <= v.level[2] then
