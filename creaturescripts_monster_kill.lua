@@ -54,6 +54,7 @@ function deathEvent.onDeath(creature, _corpse, _lastHitKiller, mostDamageKiller)
 				local killAmount = player:getStorageValue(killCounter + taskId)
 				player:setStorageValue(killCounter + taskId, killAmount + 1)
 				player:setStorageValue(KILLSSTORAGE_BASE + taskId, player:getStorageValue(KILLSSTORAGE_BASE + taskId)) -- fake update quest tracker
+				player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKill, 1) -- Set pending boss kill flag
 				
 				local killedMonsters = killAmount + 1 doPlayerSendTextMessage(player:getId(), MESSAGE_LOOK, "You killed " .. killedMonsters .. " of " .. tasks.GrizzlyAdams[taskId].killsRequired .." ".. targetName .."s required for your task.")
 				
