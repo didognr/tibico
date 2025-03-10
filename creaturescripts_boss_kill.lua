@@ -56,7 +56,6 @@ function deathEvent.onDeath(creature, _corpse, _lastHitKiller, mostDamageKiller)
 				end
 			end
 		end)
-		return true
 	end
 	return true
 end
