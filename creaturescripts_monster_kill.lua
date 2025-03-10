@@ -56,7 +56,7 @@ function deathEvent.onDeath(creature, _corpse, _lastHitKiller, mostDamageKiller)
 				player:setStorageValue(KILLSSTORAGE_BASE + taskId, player:getStorageValue(KILLSSTORAGE_BASE + taskId)) -- fake update quest tracker
 				if killAmount + 1 >= tasks.GrizzlyAdams[taskId].killsRequired then
 					player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKill, 1) -- Set pending boss kill flag
-					player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have completed your task and are now eligible to fight the boss.")
+					player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have completed your task and must defeat the boss before taking new tasks.")
 					player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.TaskLock, 1) -- Lock new tasks until boss is killed
 				end
 				
