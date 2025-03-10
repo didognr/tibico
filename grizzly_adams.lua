@@ -18,6 +18,7 @@ local function greetCallback(npc, creature)
 	end
 	if player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKills) > 0 then
 		npcHandler:setMessage(MESSAGE_GREET, npcHandler:getMessage(MESSAGE_GREET) .. " However, you have pending boss kills. Please complete them before taking new tasks.")
+		return true -- Prevent further interaction if pending boss kills exist
 	end
 	return true
 end
