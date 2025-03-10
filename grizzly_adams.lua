@@ -378,6 +378,7 @@ local function checkX(npc, player, d, message)
                             player:setStorageValue(tasks.GrizzlyAdams[m].rewards[n].value[1], 1)
                             player:setStorageValue(tasks.GrizzlyAdams[m].rewards[n].value[2], 0)
                             player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.BossPoints, player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.BossPoints) - 1)
+                            player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKills, player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKills) + 1)
                             player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.QuestLogEntry, player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.QuestLogEntry)) -- fake update
                             return true
                         else
@@ -424,6 +425,13 @@ local function creatureSayCallback(npc, creature, type, message)
 
 	if not npcHandler:checkInteraction(npc, creature) then
 		return false
+	end
+
+	-- Check if the player has pending boss kills before processing the message
+	local pendingBossKills = player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKills)
+	if pendingBossKills > 0 then
+		npcHandler:say("You need to kill the boss you've earned the right to fight before taking new tasks.", npc, creature)
+		return true
 	end
 
 	message = message:gsub("(%l)(%w*)", function(a, b)
@@ -900,9 +908,9 @@ local function creatureSayCallback(npc, creature, type, message)
 			for i = 1, #started do
 				id = started[i]
 				t = t + 1
-				text = text .. "Task name: " .. tasks.GrizzlyAdams[id].raceName .. ". " .. "Current kills: " .. player:getStorageValue(KillCounter + id) .. ".\n"
+				text = text .. "Task name: " .. tasks.GrizzlyAdams[id].raceName .. ". " .. "Current kills: " .. player:getStorageValue(KillCounter + id) .. ".\\n"
 			end
-			npcHandler:say({ "The status of your current tasks is:\n" .. text }, npc, creature)
+			npcHandler:say({ "The status of your current tasks is:\\n" .. text }, npc, creature)
 		else
 			npcHandler:say("You haven't started any task yet.", npc, creature)
 		end
@@ -939,6 +947,10 @@ local function creatureSayCallback(npc, creature, type, message)
 		end
 	elseif table.contains({ "boss", "bosses" }, message:lower()) then
 		if checkZ(npc, player, message) == true then
+			return true
+		end
+		if player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKills) > 0 then
+			npcHandler:say("You need to kill the boss you've earned the right to fight before choosing another boss.", npc, creature)
 			return true
 		end
 		if player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.BossPoints) > 0 then
@@ -1137,6 +1149,7 @@ local function creatureSayCallback(npc, creature, type, message)
 				}, npc, creature)
 				player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.BossKillCount.TiquandasCount, 0)
 				player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MissionTiquandasRevenge, 1)
+				player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKills, player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKills) + 1)
 			elseif player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MissionTiquandasRevenge) <= 2 and player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.BossKillCount.TiquandasCount) == 0 then
 				npcHandler:say("You have already started the task. Go find Tiquandas Revenge and take revenge yourself!", npc, creature)
 				player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.MissionTiquandasRevenge, 1) -- for death scenario
