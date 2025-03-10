@@ -20,5 +20,9 @@ local function greetCallback(npc, creature)
 		npcHandler:setMessage(MESSAGE_GREET, npcHandler:getMessage(MESSAGE_GREET) .. " However, you have pending boss kills. Please complete them before taking new tasks.")
 		return true -- Prevent further interaction if pending boss kills exist
 	end
+
+	if player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.QuestLogEntry) ~= 0 then
+		player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.QuestLogEntry, 0) -- Ensure quest log is not marked prematurely
+	end
 	return true
 end

@@ -57,6 +57,7 @@ function deathEvent.onDeath(creature, _corpse, _lastHitKiller, mostDamageKiller)
 				if killAmount + 1 >= tasks.GrizzlyAdams[taskId].killsRequired then
 					player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKill, 1) -- Set pending boss kill flag
 					player:sendTextMessage(MESSAGE_STATUS_CONSOLE_BLUE, "You have completed your task and are now eligible to fight the boss.")
+					player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.TaskLock, 1) -- Lock new tasks until boss is killed
 				end
 				
 				local killedMonsters = killAmount + 1 doPlayerSendTextMessage(player:getId(), MESSAGE_LOOK, "You killed " .. killedMonsters .. " of " .. tasks.GrizzlyAdams[taskId].killsRequired .." ".. targetName .."s required for your task.")
