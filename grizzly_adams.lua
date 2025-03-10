@@ -146,5 +146,8 @@ local function greetCallback(npc, creature)
 	else
 		npcHandler:setMessage(MESSAGE_GREET, "Welcome to the 'Paw and Fur - Hunting Elite' |PLAYERNAME|. Feel free to do {tasks} for us.")
 	end
+	if player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKills) > 0 then
+		npcHandler:setMessage(MESSAGE_GREET, npcHandler:getMessage(MESSAGE_GREET) .. " However, you have pending boss kills. Please complete them before taking new tasks.")
+	end
 	return true
 end

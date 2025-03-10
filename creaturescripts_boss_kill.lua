@@ -35,6 +35,7 @@ local taskBoss = {
 
 local bossKillCount = Storage.Quest.U8_5.KillingInTheNameOf.BossKillCount.SnapperCount
 local pendingBossKillStorage = Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKill
+local pendingBossKillStorage = Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKill
 
 local deathEvent = CreatureEvent("KillingInTheNameOfBossDeath")
 function deathEvent.onDeath(creature, _corpse, _lastHitKiller, mostDamageKiller)
@@ -45,7 +46,7 @@ function deathEvent.onDeath(creature, _corpse, _lastHitKiller, mostDamageKiller)
 			if targetName == bossName then
 				if player:getStorageValue(bossKillCount + i) < 1 then
 					player:setStorageValue(bossKillCount + i, 1)
-					player:setStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.PendingBossKill, -1) -- Clear pending boss kill flag
+					player:setStorageValue(pendingBossKillStorage, -1) -- Clear pending boss kill flag
 					local currentPoints = player:getStorageValue(Storage.Quest.U8_5.KillingInTheNameOf.Points)
 					if currentPoints < 0 then
 						currentPoints = 0
