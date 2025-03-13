@@ -39,6 +39,24 @@ function Fishing.rewardPlayer(player, numCaught)
 
     -- Additional rewards logic can be added here if needed
 
+    -- Combine rewards into a single message
+    local rewardSummary = {
+        items = {},
+        monsters = {}
+    }
+
+    for _, reward in ipairs(rewards) do
+        if reward == "crab" then
+            table.insert(rewardSummary.monsters, reward)
+        else
+            table.insert(rewardSummary.items, reward)
+        end
+    end
+
+    -- Send a single message to the player summarizing rewards
+    local message = "You caught: " .. #rewardSummary.monsters .. " monster(s) and received: " .. #rewardSummary.items .. " item(s)."
+    player:sendMessage(message)
+
     -- Grant rewards to the player
     for _, reward in ipairs(rewards) do
         player:giveItem(reward)
