@@ -23,6 +23,11 @@ function Fishing.rewardPlayer(player, numCaught)
     if numCaught > 0 then
         -- Add a small ruby to the rewards
         table.insert(rewards, "small_ruby")
+
+        -- Prevent the crab from giving 2 boots
+        if numCaught > 1 then
+            table.insert(rewards, "boot")
+        end
     end
 
     -- Additional rewards logic can be added here if needed
