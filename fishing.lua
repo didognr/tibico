@@ -24,9 +24,17 @@ function Fishing.rewardPlayer(player, numCaught)
         -- Add a small ruby to the rewards
         table.insert(rewards, "small_ruby")
 
-        -- Prevent the crab from giving 2 boots
-        if numCaught > 1 then
-            table.insert(rewards, "boot")
+        -- Add rewards based on the number of items caught
+        local itemQuantities = {
+            fish = math.min(numCaught, 5), -- Limit to 5 fish max
+            boot = math.min(math.floor(numCaught / 2), 1), -- Max 1 boot for every 2 catches
+            crab = math.min(math.floor(numCaught / 3), 1) -- Max 1 crab for every 3 catches
+        }
+
+        for item, quantity in pairs(itemQuantities) do
+            for i = 1, quantity do
+                table.insert(rewards, item)
+            end
         end
     end
 
