@@ -1,4 +1,4 @@
--- fishing.lua
+. q -- fishing.lua
 -- This script handles the fishing mechanics and rewards in the game.
 -- The issue with double small ruby rewards has been fixed in this version.
 
