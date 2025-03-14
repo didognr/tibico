@@ -1,4 +1,4 @@
--- upgradesystem.lua
+DZ-- upgradesystem.lua
 -- This script handles the boot upgrade system and tracks the number of upgrade attempts.
 
 local UpgradeSystem = {}
