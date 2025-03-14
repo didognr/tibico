@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<channels>
+    <channel id="1" name="General" description="A channel for general discussions." />
+    <channel id="2" name="Trade" description="A channel for buying, selling, and trading items." />
+    <channel id="3" name="Help" description="A channel for players to ask for help and share tips." />
+    <channel id="4" name="Guild" description="A private channel for guild members." />
+    <channel id="5" name="Party" description="A private channel for party members." />
+</channels>
